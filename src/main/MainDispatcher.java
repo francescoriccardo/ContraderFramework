@@ -1,6 +1,7 @@
 package main;
 
 import main.controller.Controller;
+import main.controller.GestoreEccezioni;
 import main.controller.Request;
 import main.view.View;
 
@@ -28,7 +29,7 @@ public class MainDispatcher<T> {
             Method metodo = oggettoController.getClass().getMethod(action, Request.class);
             metodo.invoke(oggettoController, request);
         } catch (Throwable e) {
-            e.printStackTrace();
+            GestoreEccezioni.getInstance().gestisciEccezione(e);
         }
     }
 

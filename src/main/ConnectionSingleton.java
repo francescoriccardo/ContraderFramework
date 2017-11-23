@@ -1,5 +1,6 @@
 package main;
 
+import main.controller.GestoreEccezioni;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import java.sql.Connection;
@@ -26,7 +27,7 @@ public class ConnectionSingleton {
                 dataSource.setDriverClassName(myDriver);
                 connection = dataSource.getConnection();
             } catch (Exception e) {
-                e.printStackTrace();
+                GestoreEccezioni.getInstance().gestisciEccezione(e);
             }
         }
         return connection;

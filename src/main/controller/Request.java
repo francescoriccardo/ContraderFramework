@@ -18,4 +18,11 @@ public class Request {
     public Object get(String key){
         return this.parameters.get(key);
     }
+
+    public Object getString(String key){
+        Object returnObject = get(key);
+        if(returnObject != null)
+            return returnObject.toString();
+        return null;
+    }
 }
