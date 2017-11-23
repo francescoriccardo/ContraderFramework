@@ -11,7 +11,7 @@ public class LoginController implements Controller {
     public LoginController() {
     }
 
-    public void doControl (Map<String, Object> data) {
-        MainDispatcher.getInstance().callView("Login", data);
+    public void doControl (Request request) {
+        MainDispatcher.getInstance().callView("Login", request);
     }
 }

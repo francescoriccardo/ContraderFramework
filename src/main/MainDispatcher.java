@@ -1,6 +1,7 @@
 package main;
 
 import main.controller.Controller;
+import main.controller.Request;
 import main.view.View;
 
 import java.lang.reflect.Method;
@@ -21,20 +22,19 @@ public class MainDispatcher<T> {
         return instance;
     }
 
-    public void callAction(String controller, String action, T data) {
-        data = (T) new HashMap<String, Object>();
+    public void callAction(String controller, String action, Request request) {
         Controller oggettoController = (Controller) ReflectionUtils.instantiateClass("main.controller." + controller + "Controller");
         try {
-            Method metodo = oggettoController.getClass().getMethod(action, data.getClass());
-            metodo.invoke(oggettoController, data);
+            Method metodo = oggettoController.getClass().getMethod(action, Request.class);
+            metodo.invoke(oggettoController, request);
         } catch (Throwable e) {
             e.printStackTrace();
         }
     }
 
-    public void callView(String view, Map<String, Object> data) {
+    public void callView(String view, Request request) {
         View oggettoView = (View) ReflectionUtils.instantiateClass("main.view." + view + "View");
-        oggettoView.showResults(data);
+        oggettoView.showResults(request);
         oggettoView.showOptions();
         oggettoView.submit();
     }

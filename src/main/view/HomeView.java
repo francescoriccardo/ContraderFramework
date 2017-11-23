@@ -1,5 +1,6 @@
 package main.view;
 
+import main.controller.Request;
 import main.view.View;
 
 import java.util.Map;
@@ -9,7 +10,7 @@ public class HomeView implements View {
 
     private int choice;
 
-    public void showResults (Map<String, Object> data) {
+    public void showResults (Request request) {
 
     }
 

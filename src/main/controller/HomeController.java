@@ -10,12 +10,12 @@ public class HomeController implements Controller {
     public HomeController() {
     }
 
-    public void doControl (Map<String, Object> data) {
-        String nomeUtente = data.get("nomeUtente").toString();
-        String password = data.get("password").toString();
+    public void doControl (Request request) {
+        String nomeUtente = request.get("nomeUtente").toString();
+        String password = request.get("password").toString();
         if(nomeUtente.equals("Pippo") && password.equals("Paperino"))
-            MainDispatcher.getInstance().callView("Home", data);
+            MainDispatcher.getInstance().callView("Home", request);
         else
-            MainDispatcher.getInstance().callAction("Login", "doControl", data);
+            MainDispatcher.getInstance().callAction("Login", "doControl", request);
     }
 }

@@ -4,5 +4,5 @@ import java.util.HashMap;
 import java.util.Map;
 
 public interface Controller {
-    public void doControl(Map<String, Object> data);
+    public void doControl(Request request);
 }

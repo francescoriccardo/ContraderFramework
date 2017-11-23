@@ -2,6 +2,7 @@ package main.view;
 
 import main.MainDispatcher;
 import main.controller.HomeController;
+import main.controller.Request;
 import main.view.View;
 
 import java.util.HashMap;
@@ -13,7 +14,7 @@ public class LoginView implements View {
     private String nomeUtente;
     private String password;
 
-    public void showResults (Map<String, Object> data) {
+    public void showResults (Request request) {
 
     }
 
@@ -27,10 +28,10 @@ public class LoginView implements View {
     }
 
     public void submit() {
-        Map<String, Object> data = new HashMap<>();
-        data.put("nomeUtente", nomeUtente);
-        data.put("password", password);
-        MainDispatcher.getInstance().callAction("Home", "doControl", data);
+        Request request = new Request();
+        request.put("nomeUtente", nomeUtente);
+        request.put("password", password);
+        MainDispatcher.getInstance().callAction("Home", "doControl", request);
     }
 
 
