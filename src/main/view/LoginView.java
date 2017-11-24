@@ -1,7 +1,6 @@
 package main.view;
 
 import main.MainDispatcher;
-import main.controller.HomeController;
 import main.controller.Request;
 
 import java.util.Scanner;

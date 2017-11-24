@@ -5,9 +5,10 @@ import main.controller.GestoreEccezioni;
 import main.controller.Request;
 import main.view.View;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class MainDispatcher<T> {
+public class MainDispatcher {
 
     private MainDispatcher() {
     }
@@ -36,5 +37,11 @@ public class MainDispatcher<T> {
         oggettoView.showResults(request);
         oggettoView.showOptions();
         oggettoView.submit();
+        try {
+            Runtime.getRuntime().exec("clear");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
