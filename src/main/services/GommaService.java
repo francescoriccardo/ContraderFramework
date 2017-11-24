@@ -1,25 +1,24 @@
 package main.services;
 
 import main.ConnectionSingleton;
-import main.model.Tire;
+import main.model.Gomma;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-public class TireService {
+public class GommaService {
 
-    public TireService() {
+    public GommaService() {
 
     }
 
 
-    public List<Tire> getAllTires () {
-        List<Tire> allTires = new ArrayList<>();
+    public List<Gomma> getAllGomme () {
+        List<Gomma> gomme = new ArrayList<>();
         Connection connection = ConnectionSingleton.getInstance();
         try {
            Statement statement = connection.createStatement();
@@ -28,17 +27,17 @@ public class TireService {
                String model = resultSet.getString("model");
                String manufacturer = resultSet.getString("manufacturer");
                double price = resultSet.getDouble("price");
-               allTires.add(new Tire(model, manufacturer, price));
+               gomme.add(new Gomma(model, manufacturer, price));
            }
 
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-        return allTires;
+        return gomme;
     }
 
-    public void insertTire(Tire tire) {
+    public void insertGomma(Gomma gomma) {
         Connection connection = ConnectionSingleton.getInstance();
 
 

@@ -1,12 +1,12 @@
 package main.model;
 
-public class Tire {
+public class Gomma {
 
     private String model;
     private String manufacturer;
     private double price;
 
-    public Tire(String model, String manufacturer, double price) {
+    public Gomma(String model, String manufacturer, double price) {
         this.model = model;
         this.manufacturer = manufacturer;
         this.price = price;
@@ -41,11 +41,11 @@ public class Tire {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Tire tire = (Tire) o;
+        Gomma gomma = (Gomma) o;
 
-        if (Double.compare(tire.price, price) != 0) return false;
-        if (model != null ? !model.equals(tire.model) : tire.model != null) return false;
-        return manufacturer != null ? manufacturer.equals(tire.manufacturer) : tire.manufacturer == null;
+        if (Double.compare(gomma.price, price) != 0) return false;
+        if (model != null ? !model.equals(gomma.model) : gomma.model != null) return false;
+        return manufacturer != null ? manufacturer.equals(gomma.manufacturer) : gomma.manufacturer == null;
     }
 
     @Override

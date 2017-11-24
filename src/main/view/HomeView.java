@@ -1,9 +1,7 @@
 package main.view;
 
 import main.controller.Request;
-import main.view.View;
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class HomeView implements View {

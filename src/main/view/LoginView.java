@@ -3,10 +3,7 @@ package main.view;
 import main.MainDispatcher;
 import main.controller.HomeController;
 import main.controller.Request;
-import main.view.View;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class LoginView implements View {

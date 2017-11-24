@@ -5,10 +5,7 @@ import main.controller.GestoreEccezioni;
 import main.controller.Request;
 import main.view.View;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainDispatcher<T> {
 
@@ -36,14 +33,8 @@ public class MainDispatcher<T> {
 
     public void callView(String view, Request request) {
         View oggettoView = (View) ReflectionUtils.instantiateClass("main.view." + view + "View");
-        clearScreen();
         oggettoView.showResults(request);
         oggettoView.showOptions();
         oggettoView.submit();
-    }
-
-    private void clearScreen(){
-        for(int i = 0; i < 100; i++)
-            System.out.println("");
     }
 }
