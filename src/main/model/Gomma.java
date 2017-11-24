@@ -61,10 +61,7 @@ public class Gomma {
 
     @Override
     public String toString() {
-        return "Tire{" +
-                "model='" + model + '\'' +
-                ", manufacturer='" + manufacturer + '\'' +
-                ", price=" + price +
-                '}';
+        return "Model: " + model + "\nManufacturer: " +manufacturer + "\nPrice: "+price+"\n";
+
     }
 }

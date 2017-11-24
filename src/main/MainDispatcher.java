@@ -24,7 +24,7 @@ public class MainDispatcher<T> {
     public void callAction(String controller, String action, Request request) {
         Controller oggettoController = (Controller) ReflectionUtils.instantiateClass("main.controller." + controller + "Controller");
         try {
-            Method metodo = oggettoController.getClass().getMethod(action, Request.class);
+             Method metodo = oggettoController.getClass().getMethod(action, Request.class);
             metodo.invoke(oggettoController, request);
         } catch (Throwable e) {
             GestoreEccezioni.getInstance().gestisciEccezione(e);

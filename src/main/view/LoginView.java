@@ -38,7 +38,6 @@ public class LoginView implements View {
     }
 
     protected void send () {
-        HomeController homeController = new HomeController();
     }
 
 
