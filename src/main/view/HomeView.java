@@ -40,9 +40,9 @@ public class HomeView implements View {
     }
 
 
-    protected String getInput() {
+    public String getInput() {
         Scanner scanner = new Scanner(System.in);
-        return scanner.next();
+        return scanner.nextLine();
     }
 
 

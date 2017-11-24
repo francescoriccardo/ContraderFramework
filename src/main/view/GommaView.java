@@ -19,7 +19,7 @@ public class GommaView implements View {
 
     @Override
     public void showResults(Request request) {
-       this. mode  = (String) request.get("mode");
+       this.mode  = (String) request.get("mode");
     }
 
     @Override
@@ -35,18 +35,24 @@ public class GommaView implements View {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Inserisci i dati della nuova gomma:");
                 System.out.println("Modello:");
-                String model = scanner.next();
+                String model = getInput();
                 System.out.println("Produttore:");
-                String manufacturer = scanner.next();
+                String manufacturer = getInput();
                 System.out.println("Prezzo:");
-                double price = Double.parseDouble(scanner.next());
+                double price = Double.parseDouble(getInput());
                 gommaService.insertGomma(new Gomma(model, manufacturer, price));
         }
     }
 
     @Override
+    public String getInput() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+  }
+
+    @Override
     public void submit() {
-//        MainDispatcher.getInstance().callAction("Home", "doControl", null);
+        MainDispatcher.getInstance().callAction("Home", "doControl", null);
     }
 
 
