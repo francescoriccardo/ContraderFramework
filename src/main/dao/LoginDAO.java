@@ -1,4 +1,4 @@
-package main.services;
+package main.dao;
 
 import main.ConnectionSingleton;
 import main.controller.GestoreEccezioni;
@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class LoginService {
+public class LoginDAO {
 
     private final String QUERY_LOGIN = "select * from users where username = ? and password = ?";
 

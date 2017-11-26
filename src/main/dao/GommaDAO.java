@@ -1,4 +1,4 @@
-package main.services;
+package main.dao;
 
 import main.ConnectionSingleton;
 import main.controller.GestoreEccezioni;
@@ -8,12 +8,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GommaService {
+public class GommaDAO {
 
     private final String QUERY_ALL = "select * from gomme";
     private final String QUERY_INSERT = "insert into gomme (model, manufacturer, price) values (?,?,?)";
 
-    public GommaService() {
+    public GommaDAO() {
 
     }
 

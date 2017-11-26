@@ -1,7 +1,7 @@
 package main.controller;
 
 import main.MainDispatcher;
-import main.services.LoginService;
+import main.service.LoginService;
 
 public class HomeController implements Controller {
 

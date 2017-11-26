@@ -2,7 +2,8 @@ package main.view;
 import main.MainDispatcher;
 import main.controller.Request;
 import main.model.Gomma;
-import main.services.GommaService;
+import main.dao.GommaDAO;
+import main.service.GommaService;
 
 import java.util.List;
 import java.util.Scanner;
