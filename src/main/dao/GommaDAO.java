@@ -13,11 +13,41 @@ public class GommaDAO {
     private final String QUERY_ALL = "select * from gomme";
     private final String QUERY_INSERT = "insert into gomme (idGomme, model, manufacturer,price,width,height,diameter,weight,speed,season,typeVehicle) values (NULL,?,?,?,?,?,?,?,?,?,?)";
 
-
     public GommaDAO() {
 
     }
 
+    public List<Gomma> getAllGommeForManufacturer (String brand,String type)
+    {/**/
+        Connection connection = ConnectionSingleton.getInstance();
+        List<Gomma> gomme= new ArrayList<>();
+        String query="SELECT * FROM gomme where manufacturer=\""+brand+"\" and typeVehicle=\""+type+"\"";
+        try
+        {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next())
+            {
+                int idGomme= resultSet.getInt("idGomme");
+                String model = resultSet.getString("model");
+                String manufacturer = resultSet.getString("manufacturer");
+                double price = resultSet.getDouble("price");
+                double width = resultSet.getDouble("width");
+                double height = resultSet.getDouble("height");
+                double diameter = resultSet.getDouble("diameter");
+                double weight = resultSet.getDouble("weight");
+                String speed = resultSet.getString("speed");
+                String season = resultSet.getString("season");
+                String typeVehicle = resultSet.getString("typeVehicle");
+                gomme.add(new Gomma(idGomme, model, manufacturer,price,width,height,diameter,weight,speed,season,typeVehicle));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return gomme;
+
+    }
     public List<String> getAllManufacturerForTypeVehicle(String type)
     {/**/
         Connection connection = ConnectionSingleton.getInstance();

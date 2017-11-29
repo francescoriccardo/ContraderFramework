@@ -14,7 +14,7 @@ public class HomeController implements Controller {
 
     public void doControl(Request request)
     {
-        if ((request != null)&&(role.equals("")))
+        if ((request != null)&&(request.get("role")== null))
         {
             String nomeUtente = request.get("nomeUtente").toString();
             String password = request.get("password").toString();

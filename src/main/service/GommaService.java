@@ -23,6 +23,8 @@ public class GommaService {
 
     public List<String> getAllManufacturerForTypeVehicle(String type){return this.gommaDAO.getAllManufacturerForTypeVehicle(type);}
 
+    public List<Gomma> getAllGommeForManufacturer(String brand,String type){return this.gommaDAO.getAllGommeForManufacturer(brand,type);}
+
 }
 
 

@@ -10,14 +10,10 @@ public class HomeView implements View {
 
     private int choice;
     private String role;
-    private String nomeUtente;
-    private String password;
 
     public void showResults(Request request)
     {
         role= (String)request.get("role");
-        nomeUtente= (String)request.get("nomeUtente");
-        password= (String)request.get("password");
     }
 
 
@@ -28,6 +24,9 @@ public class HomeView implements View {
         {
             case "user":
                 System.out.println("Benvenuto user");
+                System.out.println("-------MENU-------");
+                System.out.println("");
+                System.out.println("1) Visualizza brand gomma per tipologia veicolo");
                 this.choice = Integer.parseInt(getInput());
                 break;
             case "admin":
@@ -38,8 +37,7 @@ public class HomeView implements View {
                 System.out.println("");
                 System.out.println("1) Inserisci gomma");
                 System.out.println("2) Visualizza gomme disponibili");
-                System.out.println("3) Visualizza brand gomma per tipologia veicolo");
-                System.out.println("4) Logout");
+                System.out.println("3) Logout");
                 this.choice = Integer.parseInt(getInput());
         }
 
@@ -50,24 +48,36 @@ public class HomeView implements View {
         switch(role)
         {
             case "user":
-                break;
-            case "admin":
-                if (choice < 1 || choice > 4)
+            {
+                if (choice < 1 || choice > 3)
                 {
                     Request request = new Request();
-                    request.put("nomeUtente", nomeUtente);
-                    request.put("password", password);
                     request.put("role", role);
                     MainDispatcher.getInstance().callAction("Home", "doControl", request);
                 }
-                else if (choice == 4)
+                else if (choice == 3)
                     MainDispatcher.getInstance().callAction("Login", "doControl", null);
                 else {
                     Request request = new Request();
                     request.put("choice", choice);
                     request.put("role", role);
-                    request.put("nomeUtente", nomeUtente);
-                    request.put("password", password);
+                    MainDispatcher.getInstance().callAction("Gomma", "doControl", request);
+                }
+            }
+            break;
+            case "admin":
+                if (choice < 1 || choice > 3)
+                {
+                    Request request = new Request();
+                    request.put("role", role);
+                    MainDispatcher.getInstance().callAction("Home", "doControl", request);
+                }
+                else if (choice == 3)
+                    MainDispatcher.getInstance().callAction("Login", "doControl", null);
+                else {
+                    Request request = new Request();
+                    request.put("choice", choice);
+                    request.put("role", role);
                     MainDispatcher.getInstance().callAction("Gomma", "doControl", request);
                      }
         }
