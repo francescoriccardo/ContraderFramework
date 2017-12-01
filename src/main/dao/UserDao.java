@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserDao
 {
-    private final String QUERY_ALL = "select * from users";
+    private final String QUERY_ALL = "select * from users where role=\"user\"";
     private final String QUERY_INSERT ="INSERT INTO users (idUser,username,password,firstname,lastname,dateofbirth,fiscalcode,businessname,vat,municipality,post,city,address,telephone,role) VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
     public UserDao() {}
 

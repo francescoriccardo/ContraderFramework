@@ -12,6 +12,8 @@ public class UserView implements View
 {
     private UserService userService;
     private String mode;
+    private String role;
+    private String firstname;
 
     public UserView()
     {
@@ -22,6 +24,11 @@ public class UserView implements View
     public void showResults(Request request)
     {
         mode=(String)request.get("mode");
+        if(mode.equals("allUser"))
+        {
+            role= (String)request.get("role");
+            firstname=(String) request.get("firstname");
+        }
     }
 
     @Override
@@ -81,6 +88,20 @@ public class UserView implements View
     @Override
     public void submit()
     {
-        MainDispatcher.getInstance().callView("Access", null);
+        switch (mode)
+        {
+            case "sigIn":
+            {
+                MainDispatcher.getInstance().callView("Access", null);
+            }
+            break;
+            case "allUser":
+            {
+                Request request= new Request();
+                request.put("role", role);
+                request.put("firstname", firstname);
+                MainDispatcher.getInstance().callView("Home",request);
+            }
+        }
     }
 }

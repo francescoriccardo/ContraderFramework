@@ -35,12 +35,15 @@ public class GommaView implements View {
         switch (mode)
         {
             case "all":
-                List<Gomma> gomme = gommaService.getAllGomme();
-                System.out.println("----- Gomme disponibili -----");
-                System.out.println();
-                gomme.forEach(gomma -> System.out.println(gomma));
-            break;
+                {
+                    List<Gomma> gomme = gommaService.getAllGomme();
+                    System.out.println("----- Gomme disponibili -----");
+                    System.out.println();
+                    gomme.forEach(gomma -> System.out.println(gomma));
+                }
+                break;
             case "insert":
+                {
                     Scanner scanner = new Scanner(System.in);
                     System.out.println("Inserisci i dati della nuova gomma:");
                     System.out.println("Modello:");
@@ -66,8 +69,10 @@ public class GommaView implements View {
                     System.out.println("Quantità:");
                     int quantity = Integer.parseInt(getInput());
                     gommaService.insertGomma(new Gomma(null, model, manufacturer, price, width, height, diameter, weight, speed, season, typeVehicle,quantity));
-                    break;
+                }
+                break;
             case "allBrandForVehicle":
+            {
                 System.out.println("Inserisci il tipo di veicolo:(auto|moto|commerciale)");
                 String type=getInput();
                 List<String> brands = gommaService.getAllManufacturerForTypeVehicle(type);
@@ -86,6 +91,50 @@ public class GommaView implements View {
                 }
                 else
                     System.out.println("Non ci sono veicoli per il tipo indicato");
+            }
+            break;
+            case "allGommeForSize":
+            {
+                System.out.println("Inserisci il tipo di veicolo:(auto|moto|commerciale)");
+                String typeVehicle=getInput();
+                if((typeVehicle.equals("moto"))||(typeVehicle.equals("commerciale")))
+                {
+                    System.out.println("Inserisci la larghezza");
+                    Double width=Double.parseDouble(getInput());
+                    System.out.println("Inserisci l'altezza");
+                    Double height=Double.parseDouble(getInput());
+                    System.out.println("Inserisci il diametro");
+                    Double diameter=Double.parseDouble(getInput());
+                    System.out.println("Inserisci il carico");
+                    Double weight=Double.parseDouble(getInput());
+                    System.out.println("Inserisci la velocita");
+                    String speed=getInput();
+                    List<Gomma> gommes=gommaService.getAllGommeForSize(width,height,diameter,weight,speed,"",typeVehicle);
+                    if(!gommes.isEmpty())
+                        gommes.forEach(gomma-> System.out.println(gomma));
+                    else
+                        System.out.println("Non ci sono gomme per le misure indicate");
+                }
+                else
+                    if(typeVehicle.equals("auto"))
+                    {
+                        System.out.println("Inserisci la larghezza");
+                        Double width=Double.parseDouble(getInput());
+                        System.out.println("Inserisci l'altezza");
+                        Double height=Double.parseDouble(getInput());
+                        System.out.println("Inserisci il diametro");
+                        Double diameter=Double.parseDouble(getInput());
+                        System.out.println("Inserisci la stagione");
+                        String season=getInput();
+                        List<Gomma> gommes=gommaService.getAllGommeForSize(width,height,diameter,-1,"",season,typeVehicle);
+                        if(!gommes.isEmpty())
+                            gommes.forEach(gomma-> System.out.println(gomma));
+                        else
+                            System.out.println("Non ci sono gomme per le misure indicate");
+                    }
+                    else
+                        System.out.println("Non ci sono veicoli per il tipo indicato");
+            }
         }
     }
 

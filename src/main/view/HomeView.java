@@ -30,7 +30,7 @@ public class HomeView implements View {
                 System.out.println("-------MENU-------");
                 System.out.println("");
                 System.out.println("1) Cerca brand gomma per tipologia veicolo");
-                System.out.println("2) Cerca brand gomma per dimensioni");
+                System.out.println("2) Cerca gomme per dimensioni");
                 System.out.println("3) Cerca brand gomma per il tuo veicolo");
                 System.out.println("4) Logout");
                 this.choice = Integer.parseInt(getInput());
@@ -94,6 +94,7 @@ public class HomeView implements View {
                         request.put("role", role);
                         request.put("choiceLogin",null);
                         request.put("choice",choice);
+                        request.put("firstname", firstname);
                         MainDispatcher.getInstance().callAction("User", "doControl", request);
                     }
                     else

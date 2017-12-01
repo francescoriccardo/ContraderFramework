@@ -17,6 +17,81 @@ public class GommaDAO {
 
     }
 
+    public List<Gomma> getAllGommeForSize(double width,double height,double diameter,double weight,String speed,String season,String typeVehicle)
+    {
+        Connection connection = ConnectionSingleton.getInstance();
+        List<Gomma> gomme= new ArrayList<>();
+        if((typeVehicle.equals("moto"))||(typeVehicle.equals("commerciale")))
+        {
+            String query = "SELECT * FROM gomme where width = ? and height = ? and diameter = ? and weight= ? and speed = ?  and typeVehicle = ?";
+            try
+            {
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+                preparedStatement.setDouble(1,width);
+                preparedStatement.setDouble(2,height);
+                preparedStatement.setDouble(3,diameter);
+                preparedStatement.setDouble(4,weight);
+                preparedStatement.setString(5,speed);
+                preparedStatement.setString(6,typeVehicle);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next())
+                {
+                    int idGomme= resultSet.getInt("idGomme");
+                    String model = resultSet.getString("model");
+                    String manufacturer = resultSet.getString("manufacturer");
+                    double price = resultSet.getDouble("price");
+                    double pwidth = resultSet.getDouble("width");
+                    double pheight = resultSet.getDouble("height");
+                    double pdiameter = resultSet.getDouble("diameter");
+                    double pweight = resultSet.getDouble("weight");
+                    String pspeed = resultSet.getString("speed");
+                    String pseason = resultSet.getString("season");
+                    String ptypeVehicle = resultSet.getString("typeVehicle");
+                    int quantity = resultSet.getInt("quantity");
+                    gomme.add(new Gomma(idGomme, model, manufacturer,price,pwidth,pheight,pdiameter,pweight,pspeed,pseason,ptypeVehicle,quantity));
+                }
+            }
+            catch (SQLException e) { e.printStackTrace(); }
+        }
+        else
+            if(typeVehicle.equals("auto"))
+            {
+                String query = "SELECT * FROM gomme where width = ? and height = ? and diameter = ?  and season = ? and typeVehicle = ?";
+                try
+                {
+                    PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+                    preparedStatement.setDouble(1,width);
+                    preparedStatement.setDouble(2,height);
+                    preparedStatement.setDouble(3,diameter);
+                    preparedStatement.setString(4,season);
+                    preparedStatement.setString(5,typeVehicle);
+
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    while (resultSet.next())
+                    {
+                        int idGomme= resultSet.getInt("idGomme");
+                        String model = resultSet.getString("model");
+                        String manufacturer = resultSet.getString("manufacturer");
+                        double price = resultSet.getDouble("price");
+                        double pwidth = resultSet.getDouble("width");
+                        double pheight = resultSet.getDouble("height");
+                        double pdiameter = resultSet.getDouble("diameter");
+                        double pweight = resultSet.getDouble("weight");
+                        String pspeed = resultSet.getString("speed");
+                        String pseason = resultSet.getString("season");
+                        String ptypeVehicle = resultSet.getString("typeVehicle");
+                        int quantity = resultSet.getInt("quantity");
+                        gomme.add(new Gomma(idGomme, model, manufacturer,price,pwidth,pheight,pdiameter,pweight,pspeed,pseason,ptypeVehicle,quantity));
+                    }
+                }
+                catch (SQLException e) { e.printStackTrace(); }
+            }
+        return gomme;
+    }
+
     public List<Gomma> getAllGommeForManufacturer (String brand,String type)
     {/**/
         Connection connection = ConnectionSingleton.getInstance();
