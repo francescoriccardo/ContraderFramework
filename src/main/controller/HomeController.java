@@ -6,22 +6,25 @@ import main.service.LoginService;
 public class HomeController implements Controller {
 
     private LoginService loginService;
-    private String role="";
+    private String result="";
 
-    public HomeController() {
+    public HomeController()
+    {
         loginService = new LoginService();
     }
 
     public void doControl(Request request)
     {
-        if ((request != null)&&(request.get("role")== null))
+        if ((request != null)&&(request.get("role")== null)&&(request.get("firstname")==null))
         {
             String nomeUtente = request.get("nomeUtente").toString();
             String password = request.get("password").toString();
-            role=loginService.login(nomeUtente, password);
-            if (role!=null)
+            result=loginService.login(nomeUtente, password);
+            if (result!=null)
             {
-                request.put("role",role);
+                String[] part=result.split(":");
+                request.put("firstname",part[0]);
+                request.put("role",part[1]);
                 MainDispatcher.getInstance().callView("Home",request);
             }
             else

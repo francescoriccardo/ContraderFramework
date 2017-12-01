@@ -22,7 +22,11 @@ public class LoginDAO {
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next())
-                return resultSet.getString("role");
+            {
+                String result=resultSet.getString("firstname")+":";
+                result=result+resultSet.getString("role");
+                return result;
+            }
             else
                 return null;
         }

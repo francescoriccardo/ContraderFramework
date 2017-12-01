@@ -11,7 +11,7 @@ import java.util.List;
 public class GommaDAO {
 
     private final String QUERY_ALL = "select * from gomme";
-    private final String QUERY_INSERT = "insert into gomme (idGomme, model, manufacturer,price,width,height,diameter,weight,speed,season,typeVehicle) values (NULL,?,?,?,?,?,?,?,?,?,?)";
+    private final String QUERY_INSERT = "insert into gomme (idGomme, model, manufacturer,price,width,height,diameter,weight,speed,season,typeVehicle,quantity) values (NULL,?,?,?,?,?,?,?,?,?,?,?)";
 
     public GommaDAO() {
 
@@ -40,7 +40,8 @@ public class GommaDAO {
                 String speed = resultSet.getString("speed");
                 String season = resultSet.getString("season");
                 String typeVehicle = resultSet.getString("typeVehicle");
-                gomme.add(new Gomma(idGomme, model, manufacturer,price,width,height,diameter,weight,speed,season,typeVehicle));
+                int quantity = resultSet.getInt("quantity");
+                gomme.add(new Gomma(idGomme, model, manufacturer,price,width,height,diameter,weight,speed,season,typeVehicle,quantity));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,7 +89,8 @@ public class GommaDAO {
                String speed = resultSet.getString("speed");
                String season = resultSet.getString("season");
                String typeVehicle = resultSet.getString("typeVehicle");
-               gomme.add(new Gomma(idGomme, model, manufacturer,price,width,height,diameter,weight,speed,season,typeVehicle));
+               int quantity = resultSet.getInt("quantity");
+               gomme.add(new Gomma(idGomme, model, manufacturer,price,width,height,diameter,weight,speed,season,typeVehicle,quantity));
            }
         }
         catch (SQLException e) {
@@ -114,6 +116,7 @@ public class GommaDAO {
             preparedStatement.setString(8, gomma.getSpeed());
             preparedStatement.setString(9, gomma.getSeason());
             preparedStatement.setString(10, gomma.gettypeVehicle());
+            preparedStatement.setInt(11, gomma.getQuantity());
             return preparedStatement.execute();
         }
         catch (SQLException e) {

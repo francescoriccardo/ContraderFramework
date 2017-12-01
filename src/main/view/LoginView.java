@@ -29,6 +29,7 @@ public class LoginView implements View {
         request.put("nomeUtente", nomeUtente);
         request.put("password", password);
         request.put("role",null);
+        request.put("firstname",null);
         MainDispatcher.getInstance().callAction("Home", "doControl", request);
     }
 
