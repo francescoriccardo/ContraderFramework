@@ -2,14 +2,14 @@ package main.model;
 
 public class Vehicle
 {
-    private int idVehicle;
+    private Integer idVehicle;
     private String brand;
     private String model;
     private String fuel;
     private String version;
     private String capacity;
 
-    public Vehicle(int idVehicle, String brand, String model, String fuel, String version, String capacity)
+    public Vehicle(Integer idVehicle, String brand, String model, String fuel, String version, String capacity)
     {
         this.idVehicle = idVehicle;
         this.brand = brand;
@@ -19,7 +19,7 @@ public class Vehicle
         this.capacity = capacity;
     }
 
-    public int getIdVehicle() {
+    public Integer getIdVehicle() {
         return idVehicle;
     }
 

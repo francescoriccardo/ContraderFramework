@@ -1,5 +1,6 @@
 package main.view;
 
+import com.sun.org.apache.regexp.internal.RE;
 import main.MainDispatcher;
 import main.controller.Request;
 import org.springframework.scheduling.support.SimpleTriggerContext;
@@ -44,7 +45,9 @@ public class HomeView implements View {
                 System.out.println("1) Inserisci gomma");
                 System.out.println("2) Visualizza gomme disponibili");
                 System.out.println("3) Visualizza utenti registrati");
-                System.out.println("4) Logout");
+                System.out.println("4) Visualizza veicoli registarti");
+                System.out.println("5) Inserisci veicolo");
+                System.out.println("6) Logout");
                 this.choice = Integer.parseInt(getInput());
         }
 
@@ -77,7 +80,7 @@ public class HomeView implements View {
             }
             break;
             case "admin":
-                if (choice < 1 || choice > 4)
+                if (choice < 1 || choice > 6)
                 {
                     Request request = new Request();
                     request.put("role", role);
@@ -85,7 +88,7 @@ public class HomeView implements View {
                     MainDispatcher.getInstance().callAction("Home", "doControl", request);
                 }
                 else
-                    if (choice == 4)
+                    if (choice == 6)
                      MainDispatcher.getInstance().callAction("Login", "doControl", null);
                 else
                     if(choice==3)
@@ -98,13 +101,29 @@ public class HomeView implements View {
                         MainDispatcher.getInstance().callAction("User", "doControl", request);
                     }
                     else
-                    {
-                      Request request = new Request();
-                      request.put("choice", choice);
-                      request.put("role", role);
-                      request.put("firstname", firstname);
-                      MainDispatcher.getInstance().callAction("Gomma", "doControl", request);
-                    }
+                        if(choice==4)
+                        {
+                            Request request =new Request();
+                            request.put("role",role);
+                            request.put("choice",choice);
+                            MainDispatcher.getInstance().callAction("Vehicle", "doControl", request);
+                        }
+                        else
+                            if(choice==5)
+                            {
+                                Request request =new Request();
+                                request.put("role",role);
+                                request.put("choice",choice);
+                                MainDispatcher.getInstance().callAction("Vehicle", "doControl", request);
+                            }
+                            else
+                            {
+                              Request request = new Request();
+                              request.put("choice", choice);
+                              request.put("role", role);
+                              request.put("firstname", firstname);
+                              MainDispatcher.getInstance().callAction("Gomma", "doControl", request);
+                            }
         }
     }
 
