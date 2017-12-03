@@ -56,4 +56,28 @@ public class VehicleDAO
         }
 
     }
+    public Integer getIdVehicle(String brand,String model, String fuel, String version, String capacity)
+    {
+        Integer idVehicle=null;
+        String query="select idVehicle from Vehicle where brand= ? and model= ? and fuel= ? and version =? and capacity=?";
+        Connection connection=ConnectionSingleton.getInstance();
+        try
+        {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1,brand);
+            preparedStatement.setString(2,model);
+            preparedStatement.setString(3,fuel);
+            preparedStatement.setString(4,version);
+            preparedStatement.setString(5,capacity);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                idVehicle=resultSet.getInt("idVehicle");
+            }
+        }
+        catch (SQLException e) { e.printStackTrace(); }
+
+        return idVehicle;
+    }
 }

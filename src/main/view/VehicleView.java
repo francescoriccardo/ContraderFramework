@@ -13,6 +13,9 @@ public class VehicleView implements View
     private VehicleService vehicleService;
     private String mode;
     private String role;
+    private String firstname;
+    private Integer idvehicle;
+    private Integer choice;
 
     public VehicleView()
     {
@@ -24,6 +27,8 @@ public class VehicleView implements View
     {
         mode=(String)request.get("mode");
         role=(String)request.get("role");
+        firstname=(String) request.get("firstname");
+        choice=(Integer) request.get("choice");
     }
 
     @Override
@@ -56,6 +61,22 @@ public class VehicleView implements View
                 capacity=getInput();
                 vehicleService.insertVehicle(new Vehicle(null,brand,model,fuel,version,capacity));
             }
+            break;
+            case "getIdVehicle":
+            {
+                String brand,model,fuel,version,capacity;
+                System.out.println("Inserisci la marca");
+                brand=getInput();
+                System.out.println("Inserisci il modello");
+                model=getInput();
+                System.out.println("Inserisci l'alimentazione");
+                fuel=getInput();
+                System.out.println("Inserisci la versione");
+                version=getInput();
+                System.out.println("Inserisci la cilindrata");
+                capacity=getInput();
+                idvehicle=vehicleService.getIdVehicle(brand, model, fuel, version, capacity);
+            }
         }
     }
 
@@ -68,8 +89,32 @@ public class VehicleView implements View
     @Override
     public void submit()
     {
+        switch (mode)
+        {
+            case "getIdVehicle":
+            {
+                if(idvehicle!=null)
+                {
+                    Request request = new Request();
+                    request.put("role", role);
+                    request.put("firstname",firstname);
+                    request.put("idvehicle",idvehicle);
+                    request.put("choice",choice);
+                    MainDispatcher.getInstance().callAction("Gomma", "doControl",request);
+                }
+                else
+                {
+                    System.out.println("Nessuna corrispondenza trovata");
+                    Request request = new Request();
+                    request.put("role", role);
+                    request.put("firstname",firstname);
+                    MainDispatcher.getInstance().callAction("Home", "doControl",request);
+                }
+            }
+        }
         Request request = new Request();
         request.put("role", role);
+        request.put("firstname",firstname);
         MainDispatcher.getInstance().callAction("Home", "doControl",request);
     }
 }

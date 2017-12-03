@@ -68,7 +68,16 @@ public class HomeView implements View {
                 }
                 else
                     if (choice == 4)
-                    MainDispatcher.getInstance().callAction("Login", "doControl", null);
+                     MainDispatcher.getInstance().callAction("Login", "doControl", null);
+                    else
+                        if(choice==3)
+                        {
+                            Request request =new Request();
+                            request.put("role",role);
+                            request.put("choice",choice);
+                            request.put("firstname", firstname);
+                            MainDispatcher.getInstance().callAction("Vehicle", "doControl", request);
+                        }
                     else
                     {
                         Request request = new Request();
@@ -106,6 +115,7 @@ public class HomeView implements View {
                             Request request =new Request();
                             request.put("role",role);
                             request.put("choice",choice);
+                            request.put("firstname", firstname);
                             MainDispatcher.getInstance().callAction("Vehicle", "doControl", request);
                         }
                         else
@@ -114,6 +124,7 @@ public class HomeView implements View {
                                 Request request =new Request();
                                 request.put("role",role);
                                 request.put("choice",choice);
+                                request.put("firstname", firstname);
                                 MainDispatcher.getInstance().callAction("Vehicle", "doControl", request);
                             }
                             else

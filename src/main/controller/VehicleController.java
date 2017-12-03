@@ -28,7 +28,17 @@ public class VehicleController implements Controller
                     }
                 }
             }break;
-            case "user":{}
+            case "user":
+            {
+                switch (choice)
+                {
+                    case 3:
+                    {
+                        request.put("mode","getIdVehicle");
+                        MainDispatcher.getInstance().callView("Vehicle", request);
+                    }
+                }
+            }
         }
 
     }

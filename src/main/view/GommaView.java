@@ -14,6 +14,7 @@ public class GommaView implements View {
     private String mode;
     private String role;
     private String firstname;
+    private Integer idvehicle;
 
   public GommaView () {
       this.gommaService = new GommaService();
@@ -26,7 +27,7 @@ public class GommaView implements View {
        this.mode  = (String) request.get("mode");
        role=(String)request.get("role");
        firstname=(String)request.get("firstname");
-
+       idvehicle=(Integer) request.get("idvehicle");
     }
 
     @Override
@@ -135,6 +136,14 @@ public class GommaView implements View {
                     else
                         System.out.println("Non ci sono veicoli per il tipo indicato");
             }
+            break;
+            case "allGommeForVehicle":
+                {
+                    List<Gomma> gommes=gommaService.getAllIdGommeForIdVehicle(idvehicle);
+                    System.out.println("Gomme compatibili");
+                    if(!gommes.isEmpty())
+                        gommes.forEach(gomma-> System.out.println(gomma));
+                }
         }
     }
 

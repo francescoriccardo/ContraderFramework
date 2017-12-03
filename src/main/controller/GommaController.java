@@ -27,6 +27,10 @@ public class GommaController implements Controller {
                                 request.put("mode","allGommeForSize");
                             }
                             break;
+                        case 3:
+                            {
+                                request.put("mode","allGommeForVehicle");
+                            }
                     }
                 }
                 break;

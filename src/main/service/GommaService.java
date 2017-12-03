@@ -29,6 +29,7 @@ public class GommaService {
     {
         return this.gommaDAO.getAllGommeForSize(width,height,diameter,weight,speed,season,typeVehicle);
     }
+    public List<Gomma> getAllIdGommeForIdVehicle(Integer idVehicle){return this.gommaDAO.getAllIdGommeForIdVehicle(idVehicle);}
 
 }
 
